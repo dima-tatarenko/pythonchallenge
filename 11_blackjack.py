@@ -1,9 +1,9 @@
 import random
 
+# These were my initial ideas and thought process + some info about the Blackjack game itself
 # 1. Define basic interface
 # 2. Values must be randomized at start. Possible 3 functions: deal one more card (repeatable), 
 # check status and give final result
-
 
 # BJ Rules
 # Can't go over 21 total (losing = bust)
@@ -25,24 +25,21 @@ gameOn = True
 playerBust = False
 
 
-def dealPlayer():
-    player_hand.append(random.choice(deck))
-    
-def dealDealer():
-    dealer_hand.append(random.choice(deck))
+def dealCard(targetArr):
+    targetArr.append(random.choice(deck))
 
 def initialDeal():
-    dealPlayer()
-    dealPlayer()
+    for _ in range(2):
+        dealCard(player_hand)
+        dealCard(dealer_hand)
     print(player_hand)
-    dealDealer()
-    dealDealer()
     print(dealer_hand[0])
 
 initialDeal()
 
 def checkAce(score):
-    if score + 11 == 22:
+    print(score)
+    if score + 11 > 21:
         return 1
     else:
         return 11
@@ -51,7 +48,7 @@ def checkScore(givenHand):
     total = 0
     for x in givenHand:
         if x == 11:
-            x = checkAce(x)
+            x = checkAce(total)
         total = total + x
     return total
 
@@ -59,7 +56,7 @@ def checkDealer():
     global gameOn
     currentScore = checkScore(dealer_hand)
     if currentScore < 17:
-        dealDealer()
+        dealCard(dealer_hand)
     newCurrent = checkScore(dealer_hand)
     if newCurrent > 21 and playerBust == True:
         print("It's a bust for our dealer!")
@@ -82,7 +79,7 @@ def checkContinue():
     global gameOn
     deal_pass = input(f"Type 'd' to get another card or 'p' to pass: ")
     if deal_pass == "d":
-        dealPlayer()
+        dealCard(player_hand)
         checkPlayer()
         checkDealer()
         if gameOn == True:
@@ -107,6 +104,8 @@ def compareFinal():
         print("You win!")
     elif playerScore < dealerScore and dealerScore < 22:
         print("You lose!")
+    elif playerScore == dealerScore:
+        print("It's a tie!")
     else:
         print("You win!")
 
