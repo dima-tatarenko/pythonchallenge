@@ -19,7 +19,6 @@ oldItem = None
 newItem = None
 
 highscore = 0
-gameOn = True
 
 
 def fillInfo(targetObject):
