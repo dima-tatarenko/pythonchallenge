@@ -1,0 +1,14 @@
+import turtle
+
+from turtle import Turtle, Screen
+
+willy = Turtle()
+print(willy)
+willy.shape("turtle")
+willy.color("DarkSeaGreen")
+
+willy.forward(100)
+
+my_screen = Screen()
+print(my_screen.canvheight)
+my_screen.exitonclick()

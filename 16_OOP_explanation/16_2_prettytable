@@ -1,0 +1,5 @@
+from prettytable import PrettyTable
+
+x = PrettyTable()
+
+x.add_row(["Adelaide", 1295, 1158259, 600.5])
