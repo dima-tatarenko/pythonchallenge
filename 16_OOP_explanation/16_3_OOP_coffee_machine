@@ -16,14 +16,12 @@ table.add_column("Our drinks", drinkChoices)
 def offerDrink():
     print(table)
 
-    user_choice = input(f"Would you like an espresso, latte or cappuccino? You can also type (ref) to check whether the machine needs refilling or (rep) to get a report on today's earnings. ")
+    user_choice = input(f"Would you like an espresso, latte or cappuccino? You can also type (r) to get a report on whether the machine needs refilling and today's earnings. ")
 
-    if user_choice == "ref":
+    if user_choice == "r":
         coffee_maker.report()
-        takeOrder()   
-    elif user_choice == "rep":
         money_machine.report()
-        takeOrder() 
+        continueCheck()
     else:
         if menu.find_drink(user_choice):
             return user_choice
