@@ -1,0 +1,70 @@
+from menu import Menu, MenuItem
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
+from prettytable import PrettyTable
+
+money_machine = MoneyMachine()
+coffee_maker = CoffeeMaker()
+table = PrettyTable()
+menu = Menu()
+
+drinkChoices = menu.get_items().split("/")
+drinkChoices.pop()
+table.add_column("Our drinks", drinkChoices)
+
+
+def offerDrink():
+    print(table)
+
+    user_choice = input(f"Would you like an espresso, latte or cappuccino? You can also type (ref) to check whether the machine needs refilling or (rep) to get a report on today's earnings. ")
+
+    if user_choice == "ref":
+        coffee_maker.report()
+        takeOrder()   
+    elif user_choice == "rep":
+        money_machine.report()
+        takeOrder() 
+    else:
+        if menu.find_drink(user_choice):
+            return user_choice
+        else:
+            print("Please write a valid drink name.")
+            return False
+
+
+def continueCheck():
+    ckeck = input(f"Would you like anything else? (y) or (n) ")
+    if ckeck == "y":
+        return takeOrder()
+    else:
+        return
+
+
+def takeOrder():
+    user_choice = offerDrink()
+    if not user_choice:
+        return
+    
+    user_choice = menu.find_drink(user_choice)
+    if not (coffee_maker.is_resource_sufficient(user_choice)):
+        print("Please call someone who can refill the machine.")
+        return
+
+    payment = money_machine.make_payment(user_choice.cost)
+    if not payment:
+        print("You didn't insert enough coins.")
+        continueCheck()
+        return
+    
+    coffee_maker.make_coffee(user_choice)
+    
+    continueCheck()
+            
+
+takeOrder()
+
+
+
+
+
+

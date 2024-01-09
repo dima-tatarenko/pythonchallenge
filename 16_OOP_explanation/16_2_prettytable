@@ -1,5 +1,12 @@
 from prettytable import PrettyTable
 
-x = PrettyTable()
+table = PrettyTable()
 
-x.add_row(["Adelaide", 1295, 1158259, 600.5])
+
+
+table.add_column("Pokemon Name", ["Pichu", "Squirtle", "Charmander", "Bulbasaur"])
+table.add_column("Type", ["Electric", "Water", "Fire", "Grass"])
+# table.add_row(["Pikachu"])
+table.align = "l"
+
+print(table)
