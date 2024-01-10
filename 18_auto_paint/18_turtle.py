@@ -90,10 +90,4 @@ def drawCircles(totalCircles):
 drawCircles(8)
 
 
-
-
-
-
-
-
 screen.exitonclick()
