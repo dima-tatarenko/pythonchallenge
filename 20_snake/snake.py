@@ -11,7 +11,6 @@ class Snake:
     def __init__(self):
         self.snake_body = []
         self.create_snake()
-        self.snek_direction = 0
         self.head = self.snake_body[0]
         
 
@@ -51,3 +50,15 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.snake_body[0].setheading(RIGHT)
+
+    def addBody(self):
+        new_turtle = Turtle()
+        new_turtle.shape("square")
+        new_turtle.color("white")
+        new_turtle.penup()
+        self.snake_body.append(new_turtle)   
+
+    def ouroborosCheck(self):
+        for part in self.snake_body[1:]:
+            if self.head.distance(part) < 10:
+                return True
