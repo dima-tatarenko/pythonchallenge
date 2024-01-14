@@ -1,3 +1,4 @@
+import turtle
 from turtle import Turtle
 
 MOVE_DISTANCE = 20
@@ -10,6 +11,7 @@ RIGHT = 0
 class Snake:
     def __init__(self):
         self.snake_body = []
+        # self.image = "D:/snake.gif"
         self.create_snake()
         self.head = self.snake_body[0]
         
@@ -26,6 +28,8 @@ class Snake:
             turtle_initial = turtle_initial - 20
 
             self.snake_body.append(new_turtle)
+        # turtle.register_shape(self.image)
+        # self.snake_body[0].shape(self.image) 
 
     
     def auto_snake(self):
