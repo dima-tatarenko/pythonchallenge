@@ -59,8 +59,4 @@ def gameLoop():
 
 gameLoop()
 
-
-# def write(f"You lose!", move=False, align="center", font=(FONT)) 
-
-
 screen.exitonclick()
